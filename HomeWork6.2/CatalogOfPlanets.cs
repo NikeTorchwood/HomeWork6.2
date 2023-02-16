@@ -22,21 +22,19 @@ namespace HomeWork6._2
         public (int, int, string) GetPlanet(string name)
         {
             _errorCounter++;
-            for (var i = 0; i < _planets.Count; i++)
+            if (_errorCounter % 3 == 0)
             {
-                if (_planets[i].Name == name)
+                return (0, 0, "Вы спрашиваете слишком часто");
+            }
+            foreach (var planet in _planets)
+            {
+                if(planet.Name == name)
                 {
-                    if (_errorCounter % 3 == 0)
-                    {
-                        return (_planets[i].IdFromSun, _planets[i].EquatorLength, "Вы спрашиваете слишком часто");
-                    }
-                    else
-                    {
-                        return (_planets[i].IdFromSun, _planets[i].EquatorLength, "");
-                    }
+                    return (planet.IdFromSun, planet.EquatorLength, null);
                 }
             }
             return (0, 0, "Не удалось найти планету");
         }
+
     }
 }
